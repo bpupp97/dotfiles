@@ -1,0 +1,34 @@
+#! /bin/sh
+
+cd ~
+
+# Download and install required dependencies:
+#	git ruby gcc patch curl zlib readline autoconf automake diffutils make libtool bison postgresql
+
+### Install RVM ###
+
+# download source
+curl -L get.rvm.io > rvm-install
+bash < ./rvm-install
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> .bashrc
+source "$HOME/.rvm/scripts/rvm"
+rm rvm-install
+
+# Install correct version of ruby
+rvm install 2.1.5
+rvm use 2.1.5 --default
+
+# Install ruby-bundler gems
+echo "export GEM_HOME=$(ruby -e 'print Gem.user_dir')" >> .bashrc
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+gem install bundler
+cd $GEM_HOME/gems/bundler*
+bundle init
+echo 'gem "bundler"' >> Gemfile
+echo 'gem "rake"' >> Gemfile
+bundle install
+
+echo
+echo
+echo "Installation Complete! To start Metasploit, run 'sudo msfconsole'"
+

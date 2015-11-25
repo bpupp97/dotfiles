@@ -1,0 +1,80 @@
+### APPLICATIONS ###
+super + Return
+	urxvt
+super + f
+	firefox
+super + g
+	gimp
+super + s
+	steam
+super + o
+	thunar
+super + r
+	~/.bin/run.sh
+super + l
+	~/.bin/lock.sh
+
+super + {Left, Right, Up, Down}
+	bspc window -p {left, right, up, down}
+super + q
+	bspc window -c
+
+XF86PowerOff
+	~/.bin/powerMenu.sh
+
+control + F6
+	xbacklight -dec 10
+control + F7
+	xbacklight -inc 10
+control + F8
+	pactl set-sink-mute 1 toggle
+control + F9
+	pactl set-sink-mute 1 false; pactl set-sink-volume 1 -5%
+control + F10
+	pactl set-sink-mute 1 false; pactl set-sink-volume 1 +5%
+
+
+### SELECTION ###
+alt + Tab
+	bspc window -f next
+alt + shift + Tab
+	bspc window -f prev
+control + alt + {Left, Right}
+	bspc desktop -f {prev, next}
+
+### MODIFYING ###
+control + Left
+	bspc window -e left -24; bspc window -e right -24
+control + Right
+	bspc window -e left +24; bspc window -e right +24
+control + Up
+	bspc window -e up -24; bspc window -e down -24
+control + Down
+	bspc window -e up +24; bspc window -e down +24
+control + F4
+	bspc window -t fullscreen
+control + F5
+	bspc window -t floating
+super + button1
+	bspc pointer -g resize_corner
+super + @button1
+	bspc pointer -u
+control + bracketright
+	bspc desktop -R 90
+control + bracketleft
+	bspc desktop -R 270
+
+### MOVING ###
+control + shift + Left
+	bspc window -d prev; bspc desktop -f prev
+control + shift + Right
+	bspc window -d next; bspc desktop -f next
+alt + button1
+	bspc pointer -g move
+alt + @button1
+	bspc pointer -u
+
+### SYSTEM ###
+control + alt + Escape
+	bspc quit
+
